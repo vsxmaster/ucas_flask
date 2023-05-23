@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <title>Write to Student</title>
+    <style>
+        body {
+            background-image: url('/static/pe.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 10px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            font-weight: bold;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        
+        .select-category {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        
+        .file-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        
+        .submit-button {
+            background-color: #4285f4;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        
+        .submit-button:hover {
+            background-color: #2d74da;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="nav-link btn btn-warning active" href="{{url_for('lecturer_space',page=1)}}" id="back" role="button">Back to Lecturer Dashboard</a><span><p>&nbsp&nbsp&nbsp&nbsp</p></span>
+        </div>
+        <a class="nav-link btn btn-danger active float-right" href="{{url_for('logout')}}" id="logout" role="button">Logout<span class="sr-only"></span></a>
+    </nav>
+
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{message}}
+    </div>
+    {% endfor %}</br>
+
+    <div class="container">
+        <h2>Feedback Hub</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>Send to?</label><br>
+                {{ form.email_to(class="form-select") }}
+                <span><p></p></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="sender">Send by?</label>
+                {{form.sender_name(value=current_user.firstname, class="form-control")}} {{form.email_by(value=current_user.email, class="form-control")}}
+            </div>
+          
+            <div class="form-group">
+                <label for="body">What is your Message</label>
+                {{form.body(class="form-control") | safe}}
+
+                <div class="form-group">
+                    <label for="timestamp">Timestamp:</label>
+                    {{ form.time_posted(class="form-control", value=current_timestamp.strftime('%Y-%m-%d %H:%M:%S'), readonly=True) }}
+                </div>
+                
+
+            </div>
+            
+            <button type="submit" class="submit-button">Send</button>
+        </form>
+    </div>
+    <script>
+        CKEDITOR.replace('body');
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <title> View Records </title>
+
+<style>
+  body {
+    background-image: url('/static/pe.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .jumbotron {
+    background-color: #ffffff;
+    border-radius: 1rem;
+}
+</style>
+</head>
+
+<body>
+  <nav class="navbar navbar-transparent bg-dark">
+    <h2><a class="btn btn-warning float-right nav-item nav-item-spacing custom-navbar" type="button" href="{{url_for('lecturer_space',page=1)}}"> <i class="bi bi-arrow-left"></i>GO BACK</a></h5></h2>
+  </nav>
+</br>
+</br>
+    <div class="col md-15">
+      <div class="jumbotron p-2">
+
+        <table class="table table-hover table-bordered table-dark">
+          {% for message in get_flashed_messages() %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+
+
+
+        
+            </div>
+        </div>
+
+
+
+          {% if current_user.studentID == 'admin@lim' %}
+          <caption><h5>PRO-C</h5></caption>
+            <table class="table table-hover table-bordered table-dark">
+              <tr>
+                <th>Title</th>
+                <th>Officer Name</th>
+                <th>Proposal Type</th>
+                <th>Remarks</th>
+                <th>Event Finances</th>
+                <th>Event Date</th>
+                <th>Action</th>
+              </tr>
+              {% for paperworksubmission in view_paperwork %}
+                {% if paperworksubmission.club_name == 'PRO-C' %}
+                  <tr>
+                    <td>{{ paperworksubmission.event_title }}</td>
+                    <td>{{ paperworksubmission.officer_name }}</td>
+                    <td>{{ paperworksubmission.proposal_type }}</td>
+                    <td>{{ paperworksubmission.remarks }}</td>
+                    <td>{{ paperworksubmission.event_budget }}</td>
+                    <td>{{ paperworksubmission.event_date_paperwork }}</td>
+                    <td>
+                      <a href="/download/{{ paperworksubmission.id }}">{{paperworksubmission.filename}}</a>
+                    </td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+            </table>
+          {% endif %}
+
+          {% if current_user.studentID == 'admin@husni' %}
+          <caption><h5>VOLTEN CLUB</h5></caption>
+            <table class="table table-hover table-bordered table-dark">
+              <tr>
+                <th>Title</th>
+                <th>Officer Name</th>
+                <th>Proposal Type</th>
+                <th>Remarks</th>
+                <th>Event Finances</th>
+                <th>Event Date</th>
+                <th>Action</th>
+              </tr>
+              {% for paperworksubmission in view_paperwork %}
+                {% if paperworksubmission.club_name == 'VOLTEN' %}
+                  <tr>
+                    <td>{{ paperworksubmission.event_title }}</td>
+                    <td>{{ paperworksubmission.officer_name }}</td>
+                    <td>{{ paperworksubmission.proposal_type }}</td>
+                    <td>{{ paperworksubmission.remarks }}</td>
+                    <td>{{ paperworksubmission.event_budget }}</td>
+                    <td>{{ paperworksubmission.event_date_paperwork }}</td>
+                    <td>
+                      <a href="/download/{{ paperworksubmission.id }}">{{paperworksubmission.filename}}</a>
+                    </td>
+                  </tr>
+                {% endif %}w
+              {% endfor %}
+            </table>
+          {% endif %}
+
+          {% if current_user.studentID == 'admin@shamini', 'admin@yunus' %}
+          <caption><h5>UNICS</h5></caption>
+            <table class="table table-hover table-bordered table-dark">
+              <tr>
+                <th>Title</th>
+                <th>Officer Name</th>
+                <th>Proposal Type</th>
+                <th>Remarks</th>
+                <th>Event Finances</th>
+                <th>Event Date</th>
+                <th>Action</th>
+              </tr>
+              {% for paperworksubmission in view_paperwork %}
+                {% if paperworksubmission.club_name == 'UNICS' %}
+                  <tr>
+                    <td>{{ paperworksubmission.event_title }}</td>
+                    <td>{{ paperworksubmission.officer_name }}</td>
+                    <td>{{ paperworksubmission.proposal_type }}</td>
+                    <td>{{ paperworksubmission.remarks }}</td>
+                    <td>{{ paperworksubmission.event_budget }}</td>
+                    <td>{{ paperworksubmission.event_date_paperwork }}</td>
+                    <td>
+                      <a href="/download/{{ paperworksubmission.id }}">{{paperworksubmission.filename}}</a>
+                    </td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+            </table>
+          {% endif %}
+        </table>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+</body>
+</html>

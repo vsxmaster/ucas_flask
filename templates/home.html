@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>UCAS</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/css/btstyles.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('/static/pe.png');
+            background-repeat: no-repeat;
+            background-size: 2000px 900px;
+        }
+
+        fieldset {
+            width: 1050px;
+            margin: 0 auto;
+            background: linear-gradient(to bottom, #dfa5a5, #ffe2e2);
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        p#innerPara {
+            padding: 20px;
+        }
+
+        legend {
+            width: 200px;
+            padding: 10px 20px;
+        }
+
+        .navbar-logo {
+            position: absolute;
+            top: 1px;
+            left: 20px;
+            width: 150px;
+            height: 80px;
+        }
+
+        .custom-navbar {
+            background-color: #353535;
+            min-height: 100px;
+            width: 100%;
+            max-width: none;
+        }
+
+        .bg-custom {
+            background-color: transparent;
+        }
+
+        .nav-item-spacing {
+            margin-block-start: auto;
+            margin-block-end: auto;
+            margin-right: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light shadow-5-strong custom-navbar bg-custom">
+    <div class="container px-4 px-lg-5">
+        <img src="/static/unitenlogo.png" alt="Logo" class="navbar-logo" style="margin-right: 200px;">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <span><p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</p></span>
+                <li class="nav-item nav-item-spacing">
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container px-4 px-lg-5 my-5">
+
+    <fieldset class="border">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-5">
+                    <img class="card-img-top mb-5 mb-md-0" width="110" height="300" src="/static/logo1.PNG" />
+                </div>
+                <div class="col-md-6">
+                    {% for message in get_flashed_messages() %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{message}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
+                    <div class="my-3 text-center text-xl-start">
+                        <h2 class="display-7 fw-bolder text-dark mb-2"><b>UNITEN CLUBS AND SOCIETY PAPERWORKS MANAGEMENT SYSTEM (UCAS)</b></h2></br>
+                        <p class="lead fw-normal text-dark-50 mb-4">A system designed to aid in the submission of paperwork proposals and event reports, promoting a more organized and structured approach.</p>
+                        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                            <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{{url_for('memberpage')}}">Proceed to Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/static/js/btscripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+</body>
+</html>
